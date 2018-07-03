@@ -1,5 +1,5 @@
 box:
- id: node:6.9.2
+ id: node:latest
  ports:
    - "5000"
 
@@ -42,7 +42,7 @@ push-to-releases:
 deploy:
 
   box:
-    id: node:6.9.2
+    id: node:latest
 
   steps:
 
