@@ -1,0 +1,40 @@
+box: node:6.9.2
+build:
+  steps:
+    - script:
+        name: A step that executes `npm install` command
+        code: npm install  
+
+push-to-releases:
+  steps:
+    # Push to public docker repo Container Registry (CR)
+    - internal/docker-push:
+        tag: $WERCKER_GIT_BRANCH-$WERCKER_GIT_COMMIT
+        cmd: node /pipeline/source/app.js
+
+deploy:
+
+  box:
+    id: node:6.9.2
+
+  steps:
+
+    - script:
+        name: debug
+        code: |
+          echo $WERCKER_OUTPUT_DIR
+          ls -l $WERCKER_OUTPUT_DIR
+          echo $WERCKER_ROOT
+          ls -l $WERCKER_ROOT
+          echo "Docker image and tag:"
+          echo "${WERCKER_GIT_BRANCH}-${WERCKER_GIT_COMMIT}"
+          
+    - script:
+        name: Export Kubernetes Config
+        code: |
+          export KUBECONFIG="$WERCKER_ROOT/kubernetes/kube.config"
+        
+    - kubectl:
+        cwd: $WERCKER_ROOT
+        insecure-skip-tls-verify: true
+        command: create -f deploy.yaml
