@@ -37,4 +37,14 @@ deploy:
     - kubectl:
         cwd: $WERCKER_ROOT
         insecure-skip-tls-verify: true
-        command: create -f deploy.yaml
+        command: kubectl delete service hello-node-service --ignore-not-found
+ 
+    - kubectl:
+        cwd: $WERCKER_ROOT
+        insecure-skip-tls-verify: true
+        command: kubectl delete deployment hello-node-deployment --ignore-not-found
+        
+    - kubectl:
+        cwd: $WERCKER_ROOT
+        insecure-skip-tls-verify: true
+        command: create -f deploy.yaml    
