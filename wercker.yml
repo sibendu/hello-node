@@ -9,8 +9,11 @@ push-to-releases:
   steps:
     # Push to public docker repo Container Registry (CR)
     - internal/docker-push:
-        tag: $WERCKER_GIT_BRANCH-$WERCKER_GIT_COMMIT
-        cmd: node /pipeline/source/app.js
+        username: $DOCKER_USERNAME
+        password: $DOCKER_PASSWORD
+        tag:  $DOCKER_TAG
+        repository: $DOCKER_REPOSITORY
+        registry: https://registry.hub.docker.com
 
 deploy:
 
