@@ -32,5 +32,6 @@ spec:
   - port: 5000
     targetPort: 5000
     nodePort: 31000
+    protocol: TCP
   selector:
     app: hello-node
