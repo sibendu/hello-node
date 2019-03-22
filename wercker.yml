@@ -46,7 +46,7 @@ deploy:
 
   steps:
 
-- script:
+    - script:
         name: "Visualise Kubernetes config"
         code: cat deploy.yaml
         
