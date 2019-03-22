@@ -16,7 +16,9 @@ spec:
       - name: hello-node
         image: sibendudas/hello-node:latest
         ports:
-        - containerPort: 5000 #Endpoint is at port 5000 in the container
+        - name: hello-node
+          containerPort: 5000 #Endpoint is at port 5000 in the container
+          protocol: TCP
 ---
 apiVersion: v1
 kind: Service
@@ -25,7 +27,7 @@ metadata:
 spec:
   type: NodePort #Exposes the service as a node port
   ports:
-  - port: 30000
+  - port: 31000
     targetPort: 5000
   selector:
     app: hello-node
