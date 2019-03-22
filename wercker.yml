@@ -45,7 +45,12 @@ deploy:
     id: node:latest
 
   steps:
+    - bash-template
 
+    - script:
+        name: "Visualise Kubernetes config"
+        code: cat deploy.yml
+        
     - kubectl:
         name: deploy to kubernetes
         server: $KUBERNETES_MASTER
