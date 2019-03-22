@@ -45,11 +45,10 @@ deploy:
     id: node:latest
 
   steps:
-    - bash-template
 
-    - script:
+- script:
         name: "Visualise Kubernetes config"
-        code: cat deploy.yml
+        code: cat deploy.yaml
         
     - kubectl:
         name: deploy to kubernetes
@@ -57,4 +56,4 @@ deploy:
         #username: $KUBERNETES_USERNAME
         token: $KUBERNETES_TOKEN
         insecure-skip-tls-verify: true
-        command: apply -f deploy.yml
+        command: apply -f deploy.yaml
