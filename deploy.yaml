@@ -16,6 +16,7 @@ spec:
       - name: hello-node
         image: sibendudas/hello-node:latest
         imagePullPolicy: Always
+        command: ["npm", "start"]
         ports:
         - name: hello-node
           containerPort: 5000 #Endpoint is at port 5000 in the container
