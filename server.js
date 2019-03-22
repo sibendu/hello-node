@@ -1,9 +1,16 @@
-var http = require('http');
+'use strict';
 
-var handleRequest = function(request, response) {
-  console.log('Received request for URL: ' + request.url);
-  response.writeHead(200);
-  response.end('Hello World! : Sibendu');
-};
-var www = http.createServer(handleRequest);
-www.listen(5000);
+const express = require('express');
+
+// Constants
+const PORT = 8080;
+const HOST = '0.0.0.0';
+
+// App
+const app = express();
+app.get('/', (req, res) => {
+  res.send('Hello world\n');
+});
+
+app.listen(PORT, HOST);
+console.log(`Running on http://${HOST}:${PORT}`);
