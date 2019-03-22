@@ -46,32 +46,10 @@ deploy:
 
   steps:
 
-    - script:
-        name: debug
-        code: |
-          echo $WERCKER_OUTPUT_DIR
-          ls -l $WERCKER_OUTPUT_DIR
-          echo $WERCKER_ROOT
-          ls -l $WERCKER_ROOT
-          echo "Docker image and tag:"
-          echo "${WERCKER_GIT_BRANCH}-${WERCKER_GIT_COMMIT}"
-          
-    - script:
-        name: Export Kubernetes Config
-        code: |
-          export KUBECONFIG="$WERCKER_ROOT/kubernetes/kube.config"
-        
     - kubectl:
-        cwd: $WERCKER_ROOT
+        name: deploy to kubernetes
+        server: $KUBERNETES_MASTER
+        #username: $KUBERNETES_USERNAME
+        token: $KUBERNETES_TOKEN
         insecure-skip-tls-verify: true
-        command: delete service hello-node-service --ignore-not-found
- 
-    - kubectl:
-        cwd: $WERCKER_ROOT
-        insecure-skip-tls-verify: true
-        command: delete deployment hello-node-deployment --ignore-not-found
-        
-    - kubectl:
-        cwd: $WERCKER_ROOT
-        insecure-skip-tls-verify: true
-        command: create -f deploy.yaml    
+        command: apply -f deploy.yml
