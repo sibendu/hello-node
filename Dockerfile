@@ -17,4 +17,3 @@ COPY . .
 
 EXPOSE 5000
 CMD [ "npm", "start" ]
-CMD ["sh", "-c", "tail -f /dev/null"]
