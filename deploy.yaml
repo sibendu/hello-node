@@ -29,7 +29,8 @@ metadata:
 spec:
   type: NodePort #Exposes the service as a node port
   ports:
-  - port: 31000
+  - port: 5000
     targetPort: 5000
+    nodePort: 31000
   selector:
     app: hello-node
