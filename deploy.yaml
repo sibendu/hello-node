@@ -1,7 +1,7 @@
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: hello-node-deployment
+  name: hello-node
 spec:
   selector:
     matchLabels:
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: hello-node
-        image: sibendudas/hello-node:latest
+        image: sibendudas/hello-node
         #imagePullPolicy: Always
         #command: ["npm","start"]
         #command: ["/bin/bash", "-ce", "tail -f /dev/null" ]
@@ -22,17 +22,4 @@ spec:
         - name: hello-node
           containerPort: 5000 #Endpoint is at port 5000 in the container
           protocol: TCP
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: hello-node-service
-spec:
-  type: NodePort #Exposes the service as a node port
-  ports:
-  - port: 5000
-    targetPort: 5000
-    nodePort: 30000
-    protocol: TCP
-  selector:
-    app: hello-node
+
