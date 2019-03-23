@@ -6,16 +6,13 @@ box:
 # Build definition
 build:
   # The steps that will be executed on build
-  steps:
-    - internal/docker-build:
-        dockerfile: Dockerfile
-        image-name: sibendudas/hello-node
+  steps: 
     - internal/docker-push:
         username: $DOCKER_USERNAME
         password: $DOCKER_PASSWORD
         tag:  $DOCKER_TAG
-        repository: $DOCKER_REPOSITORY
-        registry: https://index.docker.io/v2    
+        repository: $DOCKER_REPO
+        registry: $DOCKER_REGISTRY    
 
 push-to-releases:
   # Push to public docker repo Container Registry (CR)
