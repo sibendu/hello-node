@@ -18,16 +18,6 @@ build:
         repository: $DOCKER_REPO
         registry: $DOCKER_REGISTRY    
 
-push-to-releases:
-  # Push to public docker repo Container Registry (CR)
-  steps:
-    - internal/docker-push:
-        username: $DOCKER_USERNAME
-        password: $DOCKER_PASSWORD
-        tag:  $DOCKER_TAG
-        repository: $DOCKER_REPOSITORY
-        registry: https://index.docker.io/v2
-
 deploy:
   steps:
     - script:
@@ -40,4 +30,4 @@ deploy:
         #username: $KUBERNETES_USERNAME
         token: $KUBERNETES_TOKEN
         insecure-skip-tls-verify: true
-        command: create -f deploy.yaml
+        command: apply -f deploy.yaml
