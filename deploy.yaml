@@ -15,9 +15,7 @@ spec:
       containers:
       - name: hello-node
         image: sibendudas/hello-node
-        #imagePullPolicy: Always
-        #command: ["npm","start"]
-        #command: ["/bin/bash", "-ce", "tail -f /dev/null" ]
+        imagePullPolicy: Always
         ports:
         - name: hello-node
           containerPort: 5000 #Endpoint is at port 5000 in the container
