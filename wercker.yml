@@ -1,20 +1,12 @@
-box:
- id: node:6.14.2
- ports:
-   - "5000"
-
-dev:
-  steps:
-    - npm-install
-    - internal/watch:
-        code: node server.js
-        reload: true
-        
 # Build definition
 build:
   # The steps that will be executed on build
   steps: 
+     - internal/docker-build:  
+        dockerfile: Dockerfile
+        image-name: sibendudas/hello-node
     - internal/docker-push:
+        image-name: sibendudas/hello-node
         username: $DOCKER_USERNAME
         password: $DOCKER_PASSWORD
         tag:  $DOCKER_TAG
