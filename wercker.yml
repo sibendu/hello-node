@@ -1,5 +1,5 @@
 box:
- id: node:latest
+ id: node:6.14.2
  ports:
    - "5000"
 
