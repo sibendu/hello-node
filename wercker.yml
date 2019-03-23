@@ -3,6 +3,13 @@ box:
  ports:
    - "5000"
 
+dev:
+  steps:
+    - npm-install
+    - internal/watch:
+        code: node server.js
+        reload: true
+        
 # Build definition
 build:
   # The steps that will be executed on build
