@@ -9,7 +9,13 @@ build:
   steps:
     - internal/docker-build:
         dockerfile: Dockerfile
-        image-name: sibendudas/hello-node  
+        image-name: sibendudas/hello-node
+    - internal/docker-push:
+        username: $DOCKER_USERNAME
+        password: $DOCKER_PASSWORD
+        tag:  $DOCKER_TAG
+        repository: $DOCKER_REPOSITORY
+        registry: https://index.docker.io/v2    
 
 push-to-releases:
   # Push to public docker repo Container Registry (CR)
@@ -22,12 +28,7 @@ push-to-releases:
         registry: https://index.docker.io/v2
 
 deploy:
-
-  box:
-    id: node:latest
-
   steps:
-
     - script:
         name: "Visualise Kubernetes config"
         code: cat deploy.yaml
