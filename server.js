@@ -8,7 +8,6 @@ var handleRequest = function(request, response) {
     console.log('error:', error);
     console.log('statusCode:', resp && resp.statusCode);
     console.log('body:', body);
-    res.end(body);
   });
   console.log('Called hello-node-rest service'); 
 
