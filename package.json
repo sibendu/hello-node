@@ -1,0 +1,14 @@
+{
+    "name": "hello-node",
+    "version": "0.0.0",
+    "description": "hello-node",
+    "main": "server.js",
+    "author": "sibendu.das@gmail.com",
+    "dependencies": {
+        "express": "latest",
+        "request": "latest",
+    },
+    "engines": {
+        "node": ">=0.12.0"
+    }
+}
