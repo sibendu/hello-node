@@ -1,12 +1,12 @@
 var http = require('http');
-var request = require('request');
+var req = require('request');
 
 var handleRequest = function(request, response) {
   
   console.log('Calling hello-node-rest service'); 
-  request('http://hello-node-rest:5000/users', function (error, response, body){
+  req('http://hello-node-rest:5000/users', function (error, resp, body){
     console.log('error:', error);
-    console.log('statusCode:', response && response.statusCode);
+    console.log('statusCode:', resp && resp.statusCode);
     console.log('body:', body);
     res.end(body);
   });
